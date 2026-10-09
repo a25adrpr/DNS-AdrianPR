@@ -28,6 +28,17 @@ services:
     - 192.168.20.10
     - 192.168.20.11
 
+  darthsidious:
+    build: dnsserver
+    hostname: darthsidious
+    depends_on:
+      - darthvader
+    volumes:
+      - ./darthsidious/named.conf.local:/etc/bind/named.conf.local
+    networks:
+      rededns:
+        ipv4_address: 192.168.20.11
+
 networks:
   rededns:
     ipam:
